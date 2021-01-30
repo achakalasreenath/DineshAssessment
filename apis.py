@@ -17,13 +17,14 @@ parser.add_argument("SecurityCode", type=str, help="3 digits")
 parser.add_argument("Amount", type=int, required=True, help="positive amount")
 
 
-@api.route('/hi')
+@api.route('/pay')
 class ProcessPayment(Resource):
     @api.expect(parser)
     def get(self):
         args = parser.parse_args()
         payment_gateway = PaymentGateway(args)
         payment_gateway.get_payment_processor()
+        return "success"
 
 
 if __name__ == '__main__':
